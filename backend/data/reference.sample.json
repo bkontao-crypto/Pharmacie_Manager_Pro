@@ -1,0 +1,22 @@
+{
+  "source": "EXEMPLE — jeu d'illustration NON VALIDÉ, non exhaustif. Ne pas utiliser comme source clinique : à remplacer par une base médicamenteuse reconnue.",
+  "classes": [
+    { "substance": "ibuprofene", "class": "ains" }, { "substance": "diclofenac", "class": "ains" }, { "substance": "ketoprofene", "class": "ains" },
+    { "substance": "naproxene", "class": "ains" }, { "substance": "acide acetylsalicylique", "class": "ains" },
+    { "substance": "amoxicilline", "class": "penicillines" }, { "substance": "ampicilline", "class": "penicillines" }, { "substance": "oxacilline", "class": "penicillines" },
+    { "substance": "enalapril", "class": "iec" }, { "substance": "lisinopril", "class": "iec" }, { "substance": "ramipril", "class": "iec" }, { "substance": "captopril", "class": "iec" }, { "substance": "perindopril", "class": "iec" },
+    { "substance": "losartan", "class": "ara2" }, { "substance": "valsartan", "class": "ara2" },
+    { "substance": "clarithromycine", "class": "macrolides" }, { "substance": "erythromycine", "class": "macrolides" },
+    { "substance": "trinitrine", "class": "derives nitres" }, { "substance": "isosorbide", "class": "derives nitres" }
+  ],
+  "rules": [
+    { "termA": "warfarine", "termB": "ains", "severity": "association_deconseillee", "description": "risque hémorragique accru", "recommendation": "Éviter l'association ; avis du prescripteur" },
+    { "termA": "ains", "termB": "ains", "severity": "association_deconseillee", "description": "deux anti-inflammatoires : cumul des effets indésirables sans bénéfice", "recommendation": "Ne délivrer qu'un seul AINS" },
+    { "termA": "iec", "termB": "ains", "severity": "precaution", "description": "risque d'insuffisance rénale aiguë et baisse de l'effet antihypertenseur", "recommendation": "Hydrater, surveiller la fonction rénale" },
+    { "termA": "ara2", "termB": "iec", "severity": "association_deconseillee", "description": "double blocage du système rénine-angiotensine", "recommendation": "Avis du prescripteur" },
+    { "termA": "macrolides", "termB": "simvastatine", "severity": "contre_indication", "description": "risque de rhabdomyolyse", "recommendation": "Ne pas associer" },
+    { "termA": "derives nitres", "termB": "sildenafil", "severity": "contre_indication", "description": "hypotension sévère", "recommendation": "Ne pas associer" },
+    { "termA": "lithium", "termB": "ains", "severity": "association_deconseillee", "description": "augmentation de la lithémie", "recommendation": "Avis du prescripteur, surveillance de la lithémie" },
+    { "termA": "paracetamol", "termB": "warfarine", "severity": "a_prendre_en_compte", "description": "à fortes doses régulières, peut majorer l'INR", "recommendation": "Surveiller l'INR en cas de prise prolongée" }
+  ]
+}

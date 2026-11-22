@@ -1,0 +1,47 @@
+# Démarrage : cp .env.example .env  →  renseigner les secrets  →  docker compose up -d --build
+# L'application écoute sur 127.0.0.1:3000 ; en production, placez un reverse proxy HTTPS devant (voir docs/DEPLOIEMENT.md).
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?définir POSTGRES_PASSWORD dans .env}
+      POSTGRES_DB: pharmacie_db
+      PMP_OWNER_PASSWORD: ${PMP_OWNER_PASSWORD:?définir PMP_OWNER_PASSWORD dans .env}
+      PMP_APP_PASSWORD: ${PMP_APP_PASSWORD:?définir PMP_APP_PASSWORD dans .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./docker/initdb:/docker-entrypoint-initdb.d:ro      # exécuté une seule fois, à la création du volume
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d pharmacie_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      TRUST_PROXY: ${TRUST_PROXY:-0}
+      DATABASE_URL: postgresql://pmp_app:${PMP_APP_PASSWORD}@db:5432/pharmacie_db          # rôle applicatif : non superuser, soumis à la RLS
+      MIGRATE_DATABASE_URL: postgresql://pmp_owner:${PMP_OWNER_PASSWORD}@db:5432/pharmacie_db  # rôle propriétaire : uniquement pour les migrations
+      JWT_SECRET: ${JWT_SECRET:?définir JWT_SECRET dans .env}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY:?définir ENCRYPTION_KEY dans .env}
+      BACKUP_ENCRYPTION_KEY: ${BACKUP_ENCRYPTION_KEY:-}
+      BACKUP_DIR: /app/backups
+      SUPERADMIN_EMAIL: ${SUPERADMIN_EMAIL:?définir SUPERADMIN_EMAIL dans .env}
+      SUPERADMIN_PASSWORD: ${SUPERADMIN_PASSWORD:?définir SUPERADMIN_PASSWORD dans .env}
+      CORS_ORIGINS: ${CORS_ORIGINS:-}
+    volumes:
+      - ./backups:/app/backups
+    command: sh -c "node backend/scripts/migrate.js && node backend/scripts/seed-superadmin.js && node backend/src/server.js"
+
+volumes:
+  pgdata:

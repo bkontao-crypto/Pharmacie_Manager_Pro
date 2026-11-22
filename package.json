@@ -1,0 +1,34 @@
+{
+  "name": "pharmacie-manager-pro",
+  "version": "0.9.1",
+  "description": "Système de gestion de pharmacie professionnel (multi-tenant)",
+  "main": "backend/src/server.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "nodemon backend/src/server.js",
+    "start": "node backend/src/server.js",
+    "migrate": "node backend/scripts/migrate.js",
+    "seed": "node backend/scripts/seed-superadmin.js",
+    "test": "node --test backend/tests/core.test.js backend/tests/consistency.test.js",
+    "backup": "node backend/scripts/backup.js",
+    "backup:verify": "node backend/scripts/backup-verify.js",
+    "restore": "node backend/scripts/restore.js",
+    "import-reference": "node backend/scripts/import-reference.js",
+    "test:integration": "node --test backend/tests/integration/*.test.js",
+    "test:e2e": "node e2e/run.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
