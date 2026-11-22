@@ -2,15 +2,17 @@
 Dernière mise à jour : 2026-11-22 · Version : 0.9.1
 
 ## Dernière tâche effectuée
-Mise en place des dossiers de référence et de la directive d'optimisation des tokens (guide fourni) : `CAHIER_DES_CHARGES.md`, `SUIVI_EXECUTION.md`, `ARCHITECTURE_TECHNIQUE.md`, `ETAT_ACTUEL.md`, `DIRECTIVE_AGENT.md`.
+Mise à jour de `DIRECTIVE_AGENT.md` (PR n°1, fusionnée) : ajout d'une section « Démarrage de session » (dépôt GitHub = référence, contrôle version/date, mode d'accès) et de la limite d'accès GitHub en lecture seule. Précédemment : mise en place des dossiers de référence et de la directive d'optimisation des tokens (guide fourni) : `CAHIER_DES_CHARGES.md`, `SUIVI_EXECUTION.md`, `ARCHITECTURE_TECHNIQUE.md`, `ETAT_ACTUEL.md`, `DIRECTIVE_AGENT.md`.
 
 ## Principaux changements
 - Les fonctionnalités et règles métier des phases 1 à 5, du multi-sites, des transferts et des fuseaux ont été **déplacées sans modification** du `README.md` vers l'annexe du cahier des charges ; le README ne garde que l'installation, l'API et la sécurité.
 - Test de cohérence ajouté : dossiers présents, version à jour dans l'état et le suivi, rubriques obligatoires, règles métier conservées.
 - Aucun changement de code applicatif ni de base.
+- Accès de l'assistant au dépôt GitHub : écriture vérifiée le 2026-11-22 (branche, commit et PR n°1 réussis).
 
 ## Tests exécutés (2026-11-22)
 `npm test` : 64/64 · `npm run test:e2e` : 71/71, 0 erreur JavaScript · `npm run test:integration` : **non exécuté**.
+Les modifications de documentation du 2026-11-22 (directive, état, suivi) n'ont pas été suivies d'une nouvelle exécution de `npm test` (non lancé depuis l'environnement de l'assistant).
 
 ## Problèmes non résolus
 - Le SQL des phases 6 à 9 et les routes `groupe.js`, `site.js`, `transferts.js` n'ont **jamais tourné sur PostgreSQL**.

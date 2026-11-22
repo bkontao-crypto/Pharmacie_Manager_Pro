@@ -12,6 +12,7 @@ Statuts : **terminé et vérifié** · **partiel** (livré, mais une partie non 
 | 0.8.1 | Test navigateur (`e2e/`) + correction du pointage de l'Admin du groupe | terminé et vérifié (interface) | `npm run test:e2e` 2026-11-22 : 71/71. Refus serveur du pointage : non exécuté sur PostgreSQL. |
 | 0.9.0 | Réception partielle des transferts | partiel | `planReceipt` testé (cas limites, clés piégées), parcours navigateur. Schéma P9 et routes non exécutés. |
 | 0.9.1 | Dossiers de référence et directive d'agent | terminé et vérifié | Test de cohérence (présence, version, rubriques, règles métier conservées) validé par mutation. |
+| 0.9.1 (doc) | `DIRECTIVE_AGENT.md` : démarrage de session, limite d'accès GitHub (PR n°1) | partiel | PR fusionnée (état renvoyé par GitHub). Contenu sur `main` non relu ; `npm test` non relancé après cette modification documentaire. |
 
 ## Bloqué
 - **Exécution des tests d'intégration** (`npm run test:integration`) : pas de PostgreSQL dans l'environnement de l'assistant. À lancer chez vous (base de test dédiée) puis communiquer les échecs.
