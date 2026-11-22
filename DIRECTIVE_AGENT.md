@@ -3,6 +3,11 @@ Adaptation au projet Pharmacie Manager Pro du guide « Économiser les tokens de
 
 Travailler avec économie de tokens **sans sacrifier** la qualité, la sécurité, les tests ni les exigences métier validées.
 
+## Démarrage de session (nouveau)
+1. Le dépôt GitHub (`bkontao-crypto/Pharmacie_Manager_Pro`) est la référence. Lire `ETAT_ACTUEL.md` puis `SUIVI_EXECUTION.md`.
+2. Comparer la version et la date indiquées avec `package.json` et l'en-tête de `CHANGELOG.md`. En cas d'écart : le signaler avant toute action, ne pas choisir arbitrairement.
+3. Vérifier le mode d'accès au dépôt (lecture seule ou écriture) en le disant simplement, sans rien affirmer qui n'ait été testé.
+
 ## Sources, dans cet ordre
 1. `ETAT_ACTUEL.md` puis `SUIVI_EXECUTION.md` (état documenté ; vérifier la date et la version, et ne rien supposer terminé sans preuve).
 2. `CAHIER_DES_CHARGES.md` section A (décisions validées : **ne jamais les modifier sans demande explicite**).
@@ -36,7 +41,8 @@ INTERVENTION : [tâche] · Statut : [terminé et vérifié / partiel / bloqué] 
 Actualiser `ETAT_ACTUEL.md` (dernière tâche, changements, tests exécutés, problèmes non résolus, prochaine tâche précise) et `SUIVI_EXECUTION.md` ; ne recopier ni le cahier des charges ni l'historique complet.
 
 ## Limites connues de l'assistant
-Pas de PostgreSQL dans son environnement ; aucun accès aux compteurs de tokens (mesure à faire côté utilisateur) ; les fichiers du projet Claude sont en lecture seule (la continuité passe par le ZIP livré) ; ne peut pas modifier les instructions du projet Claude.
+Pas de PostgreSQL dans son environnement ; aucun accès aux compteurs de tokens (mesure à faire côté utilisateur) ; les fichiers du projet Claude sont en lecture seule (la continuité passe par le dépôt GitHub ou le ZIP livré) ; ne peut pas modifier les instructions du projet Claude.
+Accès GitHub : peut être en lecture seule (refus 403 constaté le 2026-11-22). Dans ce cas, l'assistant livre les fichiers modifiés à copier dans le dépôt et ne prétend jamais les y avoir poussés.
 
 ## Principe fondamental
 Consommer le minimum de tokens nécessaire pour un résultat techniquement complet, vérifiable, maintenable et professionnel. La concision ne justifie jamais d'omettre une étape importante.
